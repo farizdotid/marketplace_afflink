@@ -1,76 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <title>Marketplace Afflink - Farizdotid</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <title>Marketplace Afflink - Farizdotid</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <!-- Form for Tokopedia Link -->
+      <form id="tokopediaForm">
+        <div class="form-group">
+          <label for="tokopediaLink">Tokopedia Link:</label>
+          <input
+            type="url"
+            class="form-control"
+            id="tokopediaLink"
+            placeholder="Enter Tokopedia Link"
+            required
+          />
+        </div>
+      </form>
 
-<div class="container mt-5">
-  <!-- Form for Tokopedia Link -->
-  <form id="tokopediaForm">
-    <div class="form-group">
-      <label for="tokopediaLink">Tokopedia Link:</label>
-      <input type="url" class="form-control" id="tokopediaLink" placeholder="Enter Tokopedia Link" required>
+      <!-- Form for Shopee Link -->
+      <form id="shopeeForm">
+        <div class="form-group">
+          <label for="shopeeLink">Shopee Link:</label>
+          <input
+            type="url"
+            class="form-control"
+            id="shopeeLink"
+            placeholder="Enter Shopee Link"
+            required
+          />
+        </div>
+      </form>
+
+      <!-- Form for Lazada Link -->
+      <form id="lazadaForm">
+        <div class="form-group">
+          <label for="lazadaLink">Lazada Link:</label>
+          <input
+            type="url"
+            class="form-control"
+            id="lazadaLink"
+            placeholder="Enter Lazada Link"
+            required
+          />
+        </div>
+      </form>
+
+      <!-- Button to Generate Code -->
+      <button type="button" class="btn btn-primary" onclick="generateCode()">
+        Generate Code
+      </button>
+
+      <!-- Display Generated Code Container -->
+      <div
+        id="generatedCodeContainer"
+        style="text-align: center; margin-top: 20px; white-space: pre-wrap"
+      ></div>
     </div>
-  </form>
 
-  <!-- Form for Shopee Link -->
-  <form id="shopeeForm">
-    <div class="form-group">
-      <label for="shopeeLink">Shopee Link:</label>
-      <input type="url" class="form-control" id="shopeeLink" placeholder="Enter Shopee Link" required>
-    </div>
-  </form>
+    <!-- Copyright Footer -->
+    <footer class="text-center mt-5">
+      <p>
+        <a href="https://farizdotid.com/">&copy; 2024 Farizdotid.</a>
+      </p>
+    </footer>
 
-  <!-- Button to Generate Code -->
-  <button type="button" class="btn btn-primary" onclick="generateCode()">Generate Code</button>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <!-- Display Generated Code Container -->
-  <div id="generatedCodeContainer" style="text-align: center; margin-top: 20px; white-space: pre-wrap;"></div>
-</div>
+    <script>
+      function generateCode() {
+        // Get the values from the input fields
+        var tokopediaLink = document.getElementById("tokopediaLink").value;
+        var shopeeLink = document.getElementById("shopeeLink").value;
+        var lazadaLink = document.getElementById("lazadaLink").value;
 
-<!-- Copyright Footer -->
-<footer class="text-center mt-5">
-    
-  <p>
-    <a href="https://farizdotid.com/">&copy; 2024 Farizdotid.</a>
-  </p>
-</footer>
+        // Generate HTML code based on the provided URLs
+        var tokopediaHTML =
+          '<div style="text-align: center; margin-top: 20px;">';
+        tokopediaHTML +=
+          '<a href="' +
+          escapeHTML(tokopediaLink) +
+          '" target="_blank" rel="noopener noreferrer" style="display: inline-block; width: 150px; padding: 10px 20px; background-color: #03AC0E; color: #fff; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease;">';
+        tokopediaHTML +=
+          '<img src="https://raw.githubusercontent.com/farizdotid/marketplace_afflink/main/logo/logo_tokopedia.png" alt="Tokopedia Logo" style="height: 20px; margin-right: 5px;">';
+        tokopediaHTML += "Beli di Tokopedia</a>";
+        tokopediaHTML += "</div>";
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        var shopeeHTML = '<div style="text-align: center; margin-top: 20px;">';
+        shopeeHTML +=
+          '<a href="' +
+          escapeHTML(shopeeLink) +
+          '" target="_blank" rel="noopener noreferrer" style="display: inline-block; width: 150px; padding: 10px 20px; background-color: #ff7c00; color: #fff; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease;">';
+        shopeeHTML +=
+          '<img src="https://raw.githubusercontent.com/farizdotid/marketplace_afflink/main/logo/logo_shoppe.png" alt="Shopee Logo" style="height: 20px; margin-right: 5px;">';
+        shopeeHTML += "Beli di Shopee</a>";
+        shopeeHTML += "</div>";
 
-<script>
-  function generateCode() {
-    // Get the values from the input fields
-    var tokopediaLink = document.getElementById('tokopediaLink').value;
-    var shopeeLink = document.getElementById('shopeeLink').value;
+        var lazadaHTML = '<div style="text-align: center; margin-top: 20px;">';
+        lazadaHTML +=
+          '<a href="' +
+          escapeHTML(lazadaLink) +
+          '" target="_blank" rel="noopener noreferrer" style="display: inline-block; width: 150px; padding: 10px 20px; background-color: #ff7c00; color: #fff; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease;">';
+        lazadaHTML +=
+          '<img src="https://raw.githubusercontent.com/farizdotid/marketplace_afflink/main/logo/logo_shoppe.png" alt="Shopee Logo" style="height: 20px; margin-right: 5px;">';
+        lazadaHTML += "Beli di Lazada</a>";
+        lazadaHTML += "</div>";
 
-    // Generate HTML code based on the provided URLs
-    var tokopediaHTML = '<div style="text-align: center; margin-top: 20px;">';
-    tokopediaHTML += '<a href="' + escapeHTML(tokopediaLink) + '" target="_blank" rel="noopener noreferrer" style="display: inline-block; width: 150px; padding: 10px 20px; background-color: #03AC0E; color: #fff; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease;">';
-    tokopediaHTML += '<img src="https://raw.githubusercontent.com/farizdotid/marketplace_afflink/main/logo/logo_tokopedia.png" alt="Tokopedia Logo" style="height: 20px; margin-right: 5px;">';
-    tokopediaHTML += 'Tokopedia</a>';
-    tokopediaHTML += '</div>';
+        // Display the generated code as text
+        document.getElementById("generatedCodeContainer").textContent =
+          tokopediaHTML + shopeeHTML + lazadaHTML;
+      }
 
-    var shopeeHTML = '<div style="text-align: center; margin-top: 20px;">';
-    shopeeHTML += '<a href="' + escapeHTML(shopeeLink) + '" target="_blank" rel="noopener noreferrer" style="display: inline-block; width: 150px; padding: 10px 20px; background-color: #ff7c00; color: #fff; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease;">';
-    shopeeHTML += '<img src="https://raw.githubusercontent.com/farizdotid/marketplace_afflink/main/logo/logo_shoppe.png" alt="Shopee Logo" style="height: 20px; margin-right: 5px;">';
-    shopeeHTML += 'Shopee</a>';
-    shopeeHTML += '</div>';
-
-    // Display the generated code as text
-    document.getElementById('generatedCodeContainer').textContent = tokopediaHTML + shopeeHTML;
-  }
-
-  function escapeHTML(html) {
-    return html.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  }
-</script>
-
-</body>
+      function escapeHTML(html) {
+        return html.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      }
+    </script>
+  </body>
 </html>
