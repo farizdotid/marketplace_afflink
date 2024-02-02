@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Tools sederhana generate button Tokopedia, Shopee, dan Lazada untuk kebutuhan Affiliate Link" />
+  <meta name="keywords" content="generator button affiliate link marketplace" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <title>Marketplace Afflink - Farizdotid</title>
 </head>
@@ -11,12 +13,12 @@
     <!-- Form for Tokopedia Link -->
     <form id="tokopediaForm">
       <div class="form-group">
-        <label for="tokopediaLink">Tokopedia Link:</label>
+        <label for="tokopediaLink">Link Tokopedia :</label>
         <input
           type="url"
           class="form-control"
           id="tokopediaLink"
-          placeholder="Enter Tokopedia Link"
+          placeholder="Masukan link affiliate Tokopedia"
           required
         />
       </div>
@@ -25,12 +27,12 @@
     <!-- Form for Shopee Link -->
     <form id="shopeeForm">
       <div class="form-group">
-        <label for="shopeeLink">Shopee Link:</label>
+        <label for="shopeeLink">Link Shopee :</label>
         <input
           type="url"
           class="form-control"
           id="shopeeLink"
-          placeholder="Enter Shopee Link"
+          placeholder="Masukan link affiliate Shopee"
           required
         />
       </div>
@@ -39,12 +41,12 @@
     <!-- Form for Lazada Link -->
     <form id="lazadaForm">
       <div class="form-group">
-        <label for="lazadaLink">Lazada Link:</label>
+        <label for="lazadaLink">Link Lazada :</label>
         <input
           type="url"
           class="form-control"
           id="lazadaLink"
-          placeholder="Enter Lazada Link"
+          placeholder="Masukan link affiliate Lazada"
           required
         />
       </div>
@@ -63,12 +65,16 @@
 
     <div class="form-check">
       <input type="checkbox" class="form-check-input" id="customTextCheckbox" />
-      <label class="form-check-label" for="customTextCheckbox">Customize button text</label>
+      <label class="form-check-label" for="customTextCheckbox">Ubah text button menjadi "Cek harga di ..." (Default: "Beli di ...")</label>
     </div>
 
     <!-- Button to Generate Code -->
-    <button type="button" class="btn btn-primary" onclick="generateCode()">
-      Generate Code
+    <button type="button" class="btn btn-primary mt-3" onclick="generateCode()">
+      Generate Code HTML
+    </button>
+
+    <button type="button" class="btn btn-secondary mt-3" onclick="copyToClipboard()" >
+      Copy to Clipboard
     </button>
 
     <!-- Display Generated Code Container -->
@@ -138,6 +144,25 @@
       html += '</div>';
 
       return html;
+    }
+
+    function copyToClipboard() {
+      var generatedCode = document.getElementById("generatedCodeContainer").textContent;
+
+      // Create a temporary textarea to copy the code
+      var textarea = document.createElement("textarea");
+      textarea.value = generatedCode;
+      document.body.appendChild(textarea);
+
+      // Select and copy the code
+      textarea.select();
+      document.execCommand("copy");
+
+      // Remove the temporary textarea
+      document.body.removeChild(textarea);
+
+      // Provide user feedback (optional)
+      alert("Kode HTML berhasil disalin. Silahkan paste di editor Wordpress/Blogger/Apapun. Semoga bermanfaat tools button affiliate link sederhana ini");
     }
   </script>
 </body>
