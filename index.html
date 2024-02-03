@@ -1,169 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Tools sederhana generate button Tokopedia, Shopee, dan Lazada untuk kebutuhan Affiliate Link" />
-  <meta name="keywords" content="generator button affiliate link marketplace" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-  <title>Marketplace Afflink - Farizdotid</title>
-</head>
-<body>
-  <div class="container mt-5">
-    <!-- Form for Tokopedia Link -->
-    <form id="tokopediaForm">
-      <div class="form-group">
-        <label for="tokopediaLink">Link Tokopedia :</label>
-        <input
-          type="url"
-          class="form-control"
-          id="tokopediaLink"
-          placeholder="Masukan link affiliate Tokopedia"
-          required
-        />
-      </div>
-    </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Tools sederhana generate button Tokopedia, Shopee, dan Lazada untuk kebutuhan Affiliate Link"
+    />
+    <meta
+      name="keywords"
+      content="generator button affiliate link marketplace"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    />
 
-    <!-- Form for Shopee Link -->
-    <form id="shopeeForm">
-      <div class="form-group">
-        <label for="shopeeLink">Link Shopee :</label>
-        <input
-          type="url"
-          class="form-control"
-          id="shopeeLink"
-          placeholder="Masukan link affiliate Shopee"
-          required
-        />
-      </div>
-    </form>
+    <title>Marketplace Afflink - Farizdotid</title>
 
-    <!-- Form for Lazada Link -->
-    <form id="lazadaForm">
-      <div class="form-group">
-        <label for="lazadaLink">Link Lazada :</label>
-        <input
-          type="url"
-          class="form-control"
-          id="lazadaLink"
-          placeholder="Masukan link affiliate Lazada"
-          required
-        />
-      </div>
-    </form>
-
-    <!-- Checkboxes for Options -->
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="nofollowCheckbox" />
-      <label class="form-check-label" for="nofollowCheckbox">Add rel="nofollow"</label>
-    </div>
-
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="newTabCheckbox" checked />
-      <label class="form-check-label" for="newTabCheckbox">Open in a new tab</label>
-    </div>
-
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="customTextCheckbox" />
-      <label class="form-check-label" for="customTextCheckbox">Ubah text button menjadi "Cek harga di ..." (Default: "Beli di ...")</label>
-    </div>
-
-    <!-- Button to Generate Code -->
-    <button type="button" class="btn btn-primary mt-3" onclick="generateCode()">
-      Generate Code HTML
-    </button>
-
-    <button type="button" class="btn btn-secondary mt-3" onclick="copyToClipboard()" >
-      Copy to Clipboard
-    </button>
-
-    <!-- Display Generated Code Container -->
-    <div
-      id="generatedCodeContainer"
-      style="text-align: center; margin-top: 20px; white-space: pre-wrap"
-    ></div>
-  </div>
-
-  <!-- Copyright Footer -->
-  <footer class="text-center mt-5">
-    <p>
-      <a href="https://farizdotid.com/">&copy; 2024 Farizdotid.</a>
-    </p>
-  </footer>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <script>
-    function generateCode() {
-      // Get the values from the input fields
-      var tokopediaLink = document.getElementById("tokopediaLink").value;
-      var shopeeLink = document.getElementById("shopeeLink").value;
-      var lazadaLink = document.getElementById("lazadaLink").value;
-
-      // Get checkbox values
-      var nofollowChecked = document.getElementById("nofollowCheckbox").checked;
-      var newTabChecked = document.getElementById("newTabCheckbox").checked;
-      var customTextChecked = document.getElementById("customTextCheckbox").checked;
-
-      // Generate HTML code based on the provided URLs and checkbox values
-      var tokopediaHTML = generateButtonCode(tokopediaLink, "Tokopedia", nofollowChecked, newTabChecked, customTextChecked, "#41B548");
-
-      var shopeeHTML = generateButtonCode(shopeeLink, "Shopee", nofollowChecked, newTabChecked, customTextChecked, "#F94F2F");
-
-      var lazadaHTML = generateButtonCode(lazadaLink, "Lazada", nofollowChecked, newTabChecked, customTextChecked, "#0F146D");
-
-      // Display the generated code as text
-      document.getElementById("generatedCodeContainer").textContent =
-        tokopediaHTML + shopeeHTML + lazadaHTML;
-    }
-
-    function escapeHTML(html) {
-      return html.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    }
-
-    function generateButtonCode(link, buttonText, addNofollow, openInNewTab, customizeText, bgColor) {
-      var html = '<div style="text-align: center; margin-top: 20px;">';
-      html += '<a href="' + escapeHTML(link) + '"';
-
-      // Check options and add attributes accordingly
-      if (addNofollow) {
-        html += ' rel="nofollow"';
+    <style>
+      /* Styles for the floating sticky element */
+      .sticky-element {
+        position: fixed;
+        bottom: 20px; /* Adjust the distance from the bottom as needed */
+        right: 20px; /* Adjust the distance from the right as needed */
+        z-index: 999;
       }
 
-      if (openInNewTab) {
-        html += ' target="_blank" rel="noopener noreferrer"';
+      body,
+      h2,
+      h3 {
+        /* Set a linear gradient background */
+        background: rgb(255, 255, 255);
+        background: linear-gradient(
+          170deg,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(242, 242, 242, 1) 48%,
+          rgba(232, 232, 232, 1) 88%,
+          rgba(196, 196, 196, 1) 100%
+        );
+        font-family: "Poppins", sans-serif;
+      }
+      h1 {
+      background-color: transparent; /* Adjust the alpha value as needed */
+      font-weight: bold;
+    }
+      
+    </style>
+  </head>
+  <body>
+
+    <h1 class="text-center mt-3">Generator Affiliate Link Button</h1>
+    <p class="text-center mt-1">Tokopedia ✅ Shopee ✅ Lazada ✅</p>
+    <div class="container mt-5">
+      <!-- Form for Tokopedia Link -->
+      <form id="tokopediaForm">
+        <div class="form-group">
+          <label for="tokopediaLink">Link Tokopedia :</label>
+          <input
+            type="url"
+            class="form-control"
+            id="tokopediaLink"
+            placeholder="Masukan link affiliate Tokopedia"
+            required
+          />
+        </div>
+      </form>
+
+      <!-- Form for Shopee Link -->
+      <form id="shopeeForm">
+        <div class="form-group">
+          <label for="shopeeLink">Link Shopee :</label>
+          <input
+            type="url"
+            class="form-control"
+            id="shopeeLink"
+            placeholder="Masukan link affiliate Shopee"
+            required
+          />
+        </div>
+      </form>
+
+      <!-- Form for Lazada Link -->
+      <form id="lazadaForm">
+        <div class="form-group">
+          <label for="lazadaLink">Link Lazada :</label>
+          <input
+            type="url"
+            class="form-control"
+            id="lazadaLink"
+            placeholder="Masukan link affiliate Lazada"
+            required
+          />
+        </div>
+      </form>
+
+      <!-- Checkboxes for Options -->
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="nofollowCheckbox" />
+        <label class="form-check-label" for="nofollowCheckbox"
+          >Add rel="nofollow"</label
+        >
+      </div>
+
+      <div class="form-check">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="newTabCheckbox"
+          checked
+        />
+        <label class="form-check-label" for="newTabCheckbox"
+          >Open in a new tab</label
+        >
+      </div>
+
+      <div class="form-check">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="customTextCheckbox"
+        />
+        <label class="form-check-label" for="customTextCheckbox"
+          >Ubah text button menjadi "Cek harga di ..." (Default: "Beli di
+          ...")</label
+        >
+      </div>
+
+      <!-- Button to Generate Code -->
+      <button
+        type="button"
+        class="btn btn-primary mt-3"
+        onclick="generateCode()"
+      >
+        Generate Code HTML
+      </button>
+
+      <div class="sticky-element">
+        <script
+          type="text/javascript"
+          src="https://cdn.trakteer.id/js/embed/trbtn.min.js?date=18-11-2023"
+        ></script>
+        <script type="text/javascript">
+          (function () {
+            var trbtnId = trbtn.init(
+              "Trakteer Kopi",
+              "#be1e2d",
+              "https://trakteer.id/farizdotid",
+              "https://cdn.trakteer.id/images/embed/trbtn-icon.png?date=18-11-2023",
+              "40"
+            );
+            trbtn.draw(trbtnId);
+          })();
+        </script>
+      </div>
+
+      <!-- Display Generated Code Container -->
+      <div
+        id="generatedCodeContainer"
+        style="
+          text-align: center;
+          margin-top: 20px;
+          white-space: pre-wrap;
+          border: 1px solid #ccc;
+          padding: 10px;
+        "
+      ></div>
+
+      <button
+        type="button"
+        class="btn btn-secondary mt-3"
+        onclick="copyToClipboard()"
+      >
+        Copy kode HTML
+      </button>
+    </div>
+
+    <!-- Copyright Footer -->
+    <footer class="text-center mt-5">
+      <p>
+        <a href="https://farizdotid.com/">&copy; 2024 Farizdotid.</a>
+      </p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      function generateCode() {
+        // Get the values from the input fields
+        var tokopediaLink = document.getElementById("tokopediaLink").value;
+        var shopeeLink = document.getElementById("shopeeLink").value;
+        var lazadaLink = document.getElementById("lazadaLink").value;
+
+        // Get checkbox values
+        var nofollowChecked =
+          document.getElementById("nofollowCheckbox").checked;
+        var newTabChecked = document.getElementById("newTabCheckbox").checked;
+        var customTextChecked =
+          document.getElementById("customTextCheckbox").checked;
+
+        // Generate HTML code based on the provided URLs and checkbox values
+        var tokopediaHTML = generateButtonCode(
+          tokopediaLink,
+          "Tokopedia",
+          nofollowChecked,
+          newTabChecked,
+          customTextChecked,
+          "#41B548"
+        );
+
+        var shopeeHTML = generateButtonCode(
+          shopeeLink,
+          "Shopee",
+          nofollowChecked,
+          newTabChecked,
+          customTextChecked,
+          "#F94F2F"
+        );
+
+        var lazadaHTML = generateButtonCode(
+          lazadaLink,
+          "Lazada",
+          nofollowChecked,
+          newTabChecked,
+          customTextChecked,
+          "#0F146D"
+        );
+
+        // Display the generated code as text
+        document.getElementById("generatedCodeContainer").textContent =
+          tokopediaHTML + shopeeHTML + lazadaHTML;
       }
 
-      // Customize button text
-      var buttonTextValue = customizeText ? "Cek harga di " + buttonText : "Beli di " + buttonText;
-      html += ' style="display: inline-block; width: 250px; padding: 10px 20px; background-color: ' + bgColor + '; color: #fff; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease;">';
-      html += '<img src="https://raw.githubusercontent.com/farizdotid/marketplace_afflink/main/logo/' + buttonText.toLowerCase() + '_v2.jpg" alt="' + buttonText + ' Logo" style="height: 20px; margin-right: 5px;">';
-      html += buttonTextValue + '</a>';
-      html += '</div>';
+      function escapeHTML(html) {
+        return html.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      }
 
-      return html;
-    }
+      function generateButtonCode(
+        link,
+        buttonText,
+        addNofollow,
+        openInNewTab,
+        customizeText,
+        bgColor
+      ) {
+        var html = '<div style="text-align: center; margin-top: 20px;">';
+        html += '<a href="' + escapeHTML(link) + '"';
 
-    function copyToClipboard() {
-      var generatedCode = document.getElementById("generatedCodeContainer").textContent;
+        // Check options and add attributes accordingly
+        if (addNofollow) {
+          html += ' rel="nofollow"';
+        }
 
-      // Create a temporary textarea to copy the code
-      var textarea = document.createElement("textarea");
-      textarea.value = generatedCode;
-      document.body.appendChild(textarea);
+        if (openInNewTab) {
+          html += ' target="_blank" rel="noopener noreferrer"';
+        }
 
-      // Select and copy the code
-      textarea.select();
-      document.execCommand("copy");
+        // Customize button text
+        var buttonTextValue = customizeText
+          ? "Cek harga di " + buttonText
+          : "Beli di " + buttonText;
+        html +=
+          ' style="display: inline-block; width: 250px; padding: 10px 20px; background-color: ' +
+          bgColor +
+          '; color: #fff; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease;">';
+        html +=
+          '<img src="https://raw.githubusercontent.com/farizdotid/marketplace_afflink/main/logo/' +
+          buttonText.toLowerCase() +
+          '_v2.jpg" alt="' +
+          buttonText +
+          ' Logo" style="height: 20px; margin-right: 5px;">';
+        html += buttonTextValue + "</a>";
+        html += "</div>";
 
-      // Remove the temporary textarea
-      document.body.removeChild(textarea);
+        return html;
+      }
 
-      // Provide user feedback (optional)
-      alert("Kode HTML berhasil disalin. Silahkan paste di editor Wordpress/Blogger/Apapun. Semoga bermanfaat tools button affiliate link sederhana ini");
-    }
-  </script>
-</body>
+      function copyToClipboard() {
+        var generatedCode = document.getElementById(
+          "generatedCodeContainer"
+        ).textContent;
+
+        // Create a temporary textarea to copy the code
+        var textarea = document.createElement("textarea");
+        textarea.value = generatedCode;
+        document.body.appendChild(textarea);
+
+        // Select and copy the code
+        textarea.select();
+        document.execCommand("copy");
+
+        // Remove the temporary textarea
+        document.body.removeChild(textarea);
+
+        // Provide user feedback (optional)
+        alert(
+          "Kode HTML berhasil disalin. Silahkan paste di editor Wordpress/Blogger/Apapun. Semoga bermanfaat tools button affiliate link sederhana ini"
+        );
+      }
+    </script>
+  </body>
 </html>
