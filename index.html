@@ -46,14 +46,12 @@
         font-family: "Poppins", sans-serif;
       }
       h1 {
-      background-color: transparent; /* Adjust the alpha value as needed */
-      font-weight: bold;
-    }
-      
+        background-color: transparent; /* Adjust the alpha value as needed */
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
-
     <h1 class="text-center mt-3">Generator Affiliate Link Button</h1>
     <p class="text-center mt-1">Tokopedia ✅ Shopee ✅ Lazada ✅</p>
     <div class="container mt-5">
@@ -198,6 +196,12 @@
         var shopeeLink = document.getElementById("shopeeLink").value;
         var lazadaLink = document.getElementById("lazadaLink").value;
 
+        // Check if all required fields are empty
+        if (!tokopediaLink && !shopeeLink && !lazadaLink) {
+          alert("Isi salah satu form terlebih dahulu.");
+          return;
+        }
+
         // Get checkbox values
         var nofollowChecked =
           document.getElementById("nofollowCheckbox").checked;
@@ -206,32 +210,38 @@
           document.getElementById("customTextCheckbox").checked;
 
         // Generate HTML code based on the provided URLs and checkbox values
-        var tokopediaHTML = generateButtonCode(
-          tokopediaLink,
-          "Tokopedia",
-          nofollowChecked,
-          newTabChecked,
-          customTextChecked,
-          "#41B548"
-        );
+        var tokopediaHTML = tokopediaLink
+          ? generateButtonCode(
+              tokopediaLink,
+              "Tokopedia",
+              nofollowChecked,
+              newTabChecked,
+              customTextChecked,
+              "#41B548"
+            )
+          : "";
 
-        var shopeeHTML = generateButtonCode(
-          shopeeLink,
-          "Shopee",
-          nofollowChecked,
-          newTabChecked,
-          customTextChecked,
-          "#F94F2F"
-        );
+        var shopeeHTML = shopeeLink
+          ? generateButtonCode(
+              shopeeLink,
+              "Shopee",
+              nofollowChecked,
+              newTabChecked,
+              customTextChecked,
+              "#F94F2F"
+            )
+          : "";
 
-        var lazadaHTML = generateButtonCode(
-          lazadaLink,
-          "Lazada",
-          nofollowChecked,
-          newTabChecked,
-          customTextChecked,
-          "#0F146D"
-        );
+        var lazadaHTML = lazadaLink
+          ? generateButtonCode(
+              lazadaLink,
+              "Lazada",
+              nofollowChecked,
+              newTabChecked,
+              customTextChecked,
+              "#0F146D"
+            )
+          : "";
 
         // Display the generated code as text
         document.getElementById("generatedCodeContainer").textContent =
