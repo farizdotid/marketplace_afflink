@@ -31,7 +31,7 @@
         z-index: 999;
       }
 
-      body{
+      body {
         font-family: "Poppins", sans-serif;
       }
       h1 {
@@ -170,7 +170,8 @@
     <!-- Copyright Footer -->
     <footer class="text-center mt-5">
       <p>
-        <a href="https://farizdotid.com/">&copy; 2024 Farizdotid.</a>
+        <a href="https://farizdotid.com/">&copy; Farizdotid</a> |
+        <a href="https://znr.my.id/">&copy; Hariz</a>
       </p>
     </footer>
 
@@ -252,19 +253,27 @@
         var html = '<div style="text-align: center; margin-top: 5px;">';
         html += '<a href="' + escapeHTML(link) + '"';
 
-        // Check options and add attributes accordingly
-        if (addNofollow) {
-          html += ' rel="nofollow"';
+        if (addNofollow || openInNewTab) {
+          // If either addNofollow or openInNewTab is checked, set relAttribute
+          relAttribute = ' rel="';
+
+          if (addNofollow) {
+            relAttribute += "nofollow ";
+          }
+
+          if (openInNewTab) {
+            relAttribute += "noopener noreferrer";
+          }
+
+          relAttribute += '"';
         }
 
-        if (openInNewTab) {
-          html += ' target="_blank" rel="noopener noreferrer"';
-        }
+        html += relAttribute;
 
         // Customize button text
         var buttonTextValue = customizeText
-          ? "Cek harga di " + buttonText
-          : "Beli di " + buttonText;
+          ? "Cek harga di " + "<b>" + buttonText + "</b>"
+          : "Beli di " + "<b>" + buttonText + "</b>";
         html +=
           ' style="display: inline-block; width: 250px; padding: 10px 20px; background-color: ' +
           bgColor +
