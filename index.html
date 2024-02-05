@@ -246,64 +246,65 @@
       }
 
       function generateButtonCode(
-  link,
-  buttonText,
-  addNofollow,
-  openInNewTab,
-  customizeText,
-  bgColor,
-  hoverColor
-) {
-  var html = '<div style="text-align: center; margin-top: 5px;">';
-  html += '<a href="' + escapeHTML(link) + '"';
+        link,
+        buttonText,
+        addNofollow,
+        openInNewTab,
+        customizeText,
+        bgColor,
+        hoverColor
+      ) {
+        var html = '<div style="text-align: center; margin-top: 5px;">';
+        html += '<a href="' + escapeHTML(link) + '"';
 
-  // Initialize relAttribute as an empty string
-  var relAttribute = "";
+        // Initialize relAttribute as an empty string
+        var relAttribute = "";
 
-  if (addNofollow || openInNewTab) {
-    // If either addNofollow or openInNewTab is checked, set relAttribute
-    relAttribute = ' rel="';
+        if (addNofollow || openInNewTab) {
+          // If either addNofollow or openInNewTab is checked, set relAttribute
+          relAttribute = ' rel="';
 
-    if (addNofollow) {
-      relAttribute += "nofollow ";
-    }
+          if (addNofollow) {
+            relAttribute += "nofollow ";
+          }
 
-    if (openInNewTab) {
-      relAttribute += "noopener noreferrer";
-    }
+          if (openInNewTab) {
+            relAttribute += "noopener noreferrer";
+          }
 
-    relAttribute += '"';
-  }
+          relAttribute += '"';
+        }
 
-  html += relAttribute;
+        html += relAttribute;
 
-  // Customize button text
-  var buttonTextValue = customizeText
-    ? "Cek harga di " + "<b>" + buttonText + "</b>"
-    : "Beli di " + "<b>" + buttonText + "</b>";
+        // Customize button text
+        var buttonTextValue = customizeText
+          ? "Cek harga di " + "<b>" + buttonText + "</b>"
+          : "Beli di " + "<b>" + buttonText + "</b>";
 
-  // Add mouseover effect
-  html +=
-    ' style="display: inline-block; width: 250px; padding: 10px 20px; background-color: ' +
-    bgColor +
-    '; color: #fff; text-decoration: none; border-radius: 10px; transition: background-color 0.3s ease;"';
-  
-  // Add mouseover attribute
-  html += ' onmouseover="this.style.backgroundColor=\''+hoverColor+ '\'"';
-  // Add mouseout attribute to revert the color when the mouse leaves
-  html += ' onmouseout="this.style.backgroundColor=\'' + bgColor + '\'">';
-  
-  html +=
-    '<img src="https://raw.githubusercontent.com/farizdotid/marketplace_afflink/main/logo/' +
-    buttonText.toLowerCase() +
-    '_v3.png" alt="' +
-    buttonText +
-    ' Logo" style="height: 20px; margin-right: 5px;">';
-  html += buttonTextValue + "</a>";
-  html += "</div>";
+        // Add mouseover effect
+        html +=
+          ' style="display: inline-block; width: 250px; padding: 10px 20px; background-color: ' +
+          bgColor +
+          '; color: #fff; text-decoration: none; border-radius: 10px; transition: background-color 0.3s ease;"';
 
-  return html;
-}
+        // Add mouseover attribute
+        html +=
+          " onmouseover=\"this.style.backgroundColor='" + hoverColor + "'\"";
+        // Add mouseout attribute to revert the color when the mouse leaves
+        html += " onmouseout=\"this.style.backgroundColor='" + bgColor + "'\">";
+
+        html +=
+          '<img src="https://raw.githubusercontent.com/farizdotid/marketplace_afflink/main/logo/' +
+          buttonText.toLowerCase() +
+          '_v3.png" alt="' +
+          buttonText +
+          ' Logo" style="height: 20px; margin-right: 5px;">';
+        html += buttonTextValue + "</a>";
+        html += "</div>";
+
+        return html;
+      }
       function copyToClipboard() {
         var generatedCode = document.getElementById(
           "generatedCodeContainer"
