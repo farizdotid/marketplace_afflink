@@ -253,6 +253,9 @@
         var html = '<div style="text-align: center; margin-top: 5px;">';
         html += '<a href="' + escapeHTML(link) + '"';
 
+        // Initialize relAttribute as an empty string
+        var relAttribute = "";
+
         if (addNofollow || openInNewTab) {
           // If either addNofollow or openInNewTab is checked, set relAttribute
           relAttribute = ' rel="';
