@@ -207,7 +207,8 @@
               nofollowChecked,
               newTabChecked,
               customTextChecked,
-              "#41B548"
+              "#41B548",
+              "#00D450"
             )
           : "";
 
@@ -218,7 +219,8 @@
               nofollowChecked,
               newTabChecked,
               customTextChecked,
-              "#F94F2F"
+              "#F94F2F",
+              "#F37C20"
             )
           : "";
 
@@ -229,7 +231,8 @@
               nofollowChecked,
               newTabChecked,
               customTextChecked,
-              "#0F146D"
+              "#0F146D",
+              "#743DA1"
             )
           : "";
 
@@ -248,7 +251,8 @@
         addNofollow,
         openInNewTab,
         customizeText,
-        bgColor
+        bgColor,
+        hoverColor
       ) {
         var html = '<div style="text-align: center; margin-top: 5px;">';
         html += '<a href="' + escapeHTML(link) + '"';
@@ -277,10 +281,19 @@
         var buttonTextValue = customizeText
           ? "Cek harga di " + "<b>" + buttonText + "</b>"
           : "Beli di " + "<b>" + buttonText + "</b>";
+
+        // Add mouseover effect
         html +=
           ' style="display: inline-block; width: 250px; padding: 10px 20px; background-color: ' +
           bgColor +
-          '; color: #fff; text-decoration: none; border-radius: 10px; transition: background-color 0.3s ease;">';
+          '; color: #fff; text-decoration: none; border-radius: 10px; transition: background-color 0.3s ease;"';
+
+        // Add mouseover attribute
+        html +=
+          " onmouseover=\"this.style.backgroundColor='" + hoverColor + "'\"";
+        // Add mouseout attribute to revert the color when the mouse leaves
+        html += " onmouseout=\"this.style.backgroundColor='" + bgColor + "'\">";
+
         html +=
           '<img src="https://raw.githubusercontent.com/farizdotid/marketplace_afflink/main/logo/' +
           buttonText.toLowerCase() +
@@ -292,7 +305,6 @@
 
         return html;
       }
-
       function copyToClipboard() {
         var generatedCode = document.getElementById(
           "generatedCodeContainer"
